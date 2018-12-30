@@ -1,8 +1,7 @@
 import React from 'react';
 import   { shallow } from 'enzyme';
 import { findByTestAttr  } from '../test/testUtils'
-import Translate from './Translate';
-
+import Translate,  { findVowels, checkLetter, translate } from './Translate';
 
 
 const setup = (props={}, state=null) => {
@@ -45,10 +44,24 @@ describe('output', () => {
         const component = findByTestAttr(wrapper, 'component-button');
         expect(component.length).toBe(1)
     });
+    describe('translate correctly', () => {
+      test('returns only Vowels in array', () => {
+        const vowelsFinder = findVowels('hello there');
+        expect(vowelsFinder).toEqual(["e", "o", "e", "e"]);
+        const vowelsFinder2 = findVowels('Pl2');
+        expect(vowelsFinder2).toEqual([]);
+      });
+      test('checkLetter renerns l + vowel before vowel', ()=>{
+          const checkLetters = checkLetter('a');
+          expect(checkLetters).toBe('ala')
 
+      });
+      test('translate correctly', ()=>{
+          const translation = translate('alice');
+          expect(translation).toBe('alalilicele')
+      });
 
-
-
+    });
 
 // test('Input should update once user types', ()=>{
 //     const wrapper = setup(null,{value:''});

@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
 import './App.css';
 
-const findVowels = (str)=> {
+export const findVowels = (str)=> {
   return (str.match(/[aeiou]/ig)||[]);
 }
-const checkLetter = (l) =>{
+export const checkLetter = (l) =>{
     if( findVowels(l).length>0) {
       return l +'l' + l
     }else {
       return l
   }
 }
-const translate = (input ) =>{
+export const translate = (input ) =>{
     const res =  input.split('').map(letter => checkLetter(letter));
     return res.join('');
 }
